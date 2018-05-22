@@ -1,0 +1,47 @@
+a = 1;
+h = 0.1;
+t = 0.01;
+L = 10;
+M = round(L/h);
+T = 10;
+A = zeros(M+1);
+
+for i = 1:1:M
+    A(i,i) = 1/t;
+end
+
+
+f = zeros(M+1,1);
+x = zeros(M+1,1);
+for i = 2:1:M
+    f(i,1) = sin(2*pi*h*(i))/t+a*(sin(2*pi*h*(i-1))-sin(2*pi*h*(i+1)))/(2*h)+a*a*t*(sin(2*pi*h*(i+1))-2*sin(2*pi*h*(i))+sin(2*pi*h*(i-1)))/(2*h*h);
+end
+u = zeros(M+1,T);
+for i = 1:1:M+1
+    u(i,1)=sin(2*pi*h*(i-1)/L);
+end
+
+
+
+for c = 1:1:M+1
+    x(c,1) = f(c,1)*t;
+end
+for i = 2:1:T
+    u(:,i) = x;
+    for j = 2:1:M
+        f(j,1) = u(j,i)/t+a*(u(j-1,i)-u(j+1,i))/(2*h)+a*a*t*(u(j+1,i)-2*u(j,i)+u(j-1,i))/(2*h*h);
+        
+    end
+    for c = 1:1:M+1
+        x(c,1) = f(c,1)*t;
+    end
+end
+x2=zeros(1,M+1);
+
+for i = 2:1:M+1
+    x2(1,i) = 0+(i-1)*h;
+end
+
+figure
+plot(x2,u(:,9));
+hold on;
