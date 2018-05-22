@@ -8,8 +8,8 @@ A = zeros(M+1);
 
 for i = 2:1:M
     A(i,i) = 1/t+2*a*e/(h*h);
-    A(i,i-1) = a*e/(h*h);
-    A(i,i+1) = a*e/(h*h);
+    A(i,i-1) = -a*e/(h*h);
+    A(i,i+1) = -a*e/(h*h);
 end
 A(1,1) = -1/h;
 A(1,2) = 1/h;
