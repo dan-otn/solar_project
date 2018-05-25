@@ -1,0 +1,16 @@
+with open('out.fna', 'w') as fout:
+    fout.write(">refseq\n")
+    with open('H37Rv.fna','r') as ref:
+        for line in ref:
+            if line[0] != '>':
+                fout.write(line)
+        #with open('name_list','r') as lst:
+         #   for line in lst:
+          #      with open(line,'r') as vcf:
+           #         for l in vcf:
+                        
+           
+    
+    #with open('name_list','r') as lst:
+     #   for line in lst:
+            
